@@ -1,7 +1,7 @@
 # Template for the Travel Agency project
 
-[![build workflow](https://github.com/lernejo/travel_agency_template/actions/workflows/build.yml/badge.svg)](https://github.com/lernejo/travel_agency_template/actions)
-[![codecov](https://codecov.io/gh/lernejo/travel_agency_template/branch/main/graph/badge.svg)](https://codecov.io/gh/lernejo/travel_agency_template)
+[![build workflow](https://github.com/wangyannick/travel_agency/actions/workflows/build.yml/badge.svg)](https://github.com/wangyannick/travel_agency/actions)
+[![codecov](https://codecov.io/gh/wangyannick/travel_agency/branch/main/graph/badge.svg?token=s8gOg2u8au)](https://codecov.io/gh/wangyannick/travel_agency)
 
 ## Build the project
 
