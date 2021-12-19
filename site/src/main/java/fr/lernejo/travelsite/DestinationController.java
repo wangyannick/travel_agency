@@ -5,30 +5,24 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-public class DestinationController {
-    private final UserRepository userRepository;
-
-    public DestinationController(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-
-    private final Destination tmp1 = new Destination("Caribbean", 32.4);
-    private final Destination tmp2 = new Destination("Australia", 35.1);
-
-    private final List<Destination> destination = new ArrayList<Destination>();
+public record DestinationController(UserRepository userRepository,
+                                    UserService userService) {
 
     @GetMapping("/api/travels")
     @ResponseBody
     public List<Destination> getTravels(@RequestParam String userName) {
-        User tmp = userRepository.getUserFromUserName(userName);
-        destination.add(tmp1);
-        destination.add(tmp2);
-        System.out.println(tmp.getUserEmail());
+        User user = userRepository.getUserFromUserName(userName);
+        ArrayList<Destination> destination = new ArrayList<Destination>();
+        try {
+            destination.addAll(userService.getCountries(user.getWeatherExpectation().toString(), user.getMinimumTemperatureDistance(), user.getUserCountry()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return destination;
     }
-
 }

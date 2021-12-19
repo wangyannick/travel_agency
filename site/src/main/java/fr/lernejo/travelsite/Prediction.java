@@ -1,14 +1,21 @@
 package fr.lernejo.travelsite;
 
-import org.springframework.lang.NonNull;
+import java.util.List;
 
-import java.util.ArrayList;
+public class Prediction {
+    private final String country;
+    private final List<Temperature> temperatures;
 
-public record Prediction(@NonNull String country,
-                         ArrayList<Temperature> temperatures) {
-
-    public Prediction(@NonNull String country, ArrayList<Temperature> temperatures) {
+    public Prediction(String country, List<Temperature> temperatures) {
         this.country = country;
         this.temperatures = temperatures;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public List<Temperature> getTemperatures() {
+        return temperatures;
     }
 }

@@ -1,11 +1,19 @@
 package fr.lernejo.travelsite;
 
-import org.springframework.lang.NonNull;
+public class Temperature {
+    private final String date;
+    private final double temperature;
 
-public record Temperature(@NonNull String date, @NonNull int temperature) {
-
-    public Temperature(String date, int temperature) {
+    public Temperature(String date, double temperature) {
         this.date = date;
         this.temperature = temperature;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public double getTemperature() {
+        return temperature;
     }
 }

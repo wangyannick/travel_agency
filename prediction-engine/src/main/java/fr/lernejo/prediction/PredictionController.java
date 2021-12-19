@@ -10,15 +10,9 @@ import org.springframework.web.server.ResponseStatusException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 
 @RestController
-public class PredictionController {
-    private final TemperatureService temperatureService;
-
-    public PredictionController(TemperatureService temperatureService) {
-        this.temperatureService = temperatureService;
-    }
+public record PredictionController(TemperatureService temperatureService) {
 
     @GetMapping("/api/temperature")
     @ResponseBody
