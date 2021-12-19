@@ -13,7 +13,7 @@ public class UserController {
     }
 
     @PostMapping(value = "/api/inscription", consumes = {"application/json"})
-    public void createUser(@RequestBody @Valid User signUp) {
-        userRepository.addUser(signUp);
+    public void createUser(@RequestBody @Valid User user) {
+        userRepository.addUser(user);
     }
 }
