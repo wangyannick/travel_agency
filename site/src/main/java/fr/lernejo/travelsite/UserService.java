@@ -1,6 +1,5 @@
 package fr.lernejo.travelsite;
 
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import retrofit2.Call;
 import retrofit2.Response;
@@ -21,7 +20,6 @@ public record UserService(PredictionEngineClient predictionEngineClient) {
         return countries;
     }
 
-    @Cacheable("countries")
     public ArrayList<Destination> getCountries(String weatherExpectation, int minimumTemperatureDistance, String userCountry) throws IOException {
         Stream<String> countries = readFileCountries();
         ArrayList<Destination> destinations = new ArrayList<>();

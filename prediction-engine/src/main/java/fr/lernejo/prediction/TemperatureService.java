@@ -1,5 +1,6 @@
 package fr.lernejo.prediction;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 
 import java.text.DecimalFormat;
@@ -27,6 +28,7 @@ public class TemperatureService {
             .collect(Collectors.toMap(v -> new CaseInsensitiveString(v.country()), Function.identity()));
     }
 
+    @Cacheable("temperature")
     public double getTemperature(String country) throws UnknownCountryException {
         TemperatureGenerationData data = temperatureDatasByCountry.get(new CaseInsensitiveString(country));
         if (data == null) {
