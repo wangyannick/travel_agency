@@ -19,8 +19,8 @@ public record PredictionController(TemperatureService temperatureService) {
     public Prediction getPrediction(@RequestParam String country) {
         try {
             ArrayList<Temperature> predictedTemperatures = new ArrayList<Temperature>(Arrays.asList(new Temperature(LocalDate.now().minusDays(1).toString(),
-                (int) temperatureService.getTemperature(country)), new Temperature(LocalDate.now().minusDays(2).toString(),
-                (int) temperatureService.getTemperature(country))));
+                (int) temperatureService.getTemperature(country, LocalDate.now().minusDays(1).toString())), new Temperature(LocalDate.now().minusDays(2).toString(),
+                (int) temperatureService.getTemperature(country, LocalDate.now().minusDays(2).toString()))));
             return new Prediction(country, predictedTemperatures);
         } catch (UnknownCountryException exception) {
             throw new ResponseStatusException(HttpStatus.EXPECTATION_FAILED, "Unknown country : " + country);

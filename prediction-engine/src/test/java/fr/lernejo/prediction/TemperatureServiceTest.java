@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import java.time.LocalDate;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 class TemperatureServiceTest {
@@ -14,7 +16,7 @@ class TemperatureServiceTest {
     @Test
     void getting_temperature_of_an_unknown_country_throws() {
         Assertions.assertThatExceptionOfType(UnknownCountryException.class)
-            .isThrownBy(() -> service.getTemperature("toto"))
+            .isThrownBy(() -> service.getTemperature("toto", LocalDate.now().minusDays(1).toString()))
             .withMessage("Unknown country: toto");
     }
 
@@ -25,7 +27,7 @@ class TemperatureServiceTest {
         "France"
     })
     void getting_the_temperature_of_france_gives_a_believable_value(String country) {
-        double temperature = service.getTemperature(country);
+        double temperature = service.getTemperature(country, LocalDate.now().minusDays(1).toString());
         assertThat(temperature).isBetween(8D, 32D);
     }
 }

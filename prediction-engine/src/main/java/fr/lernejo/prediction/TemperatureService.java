@@ -28,8 +28,8 @@ public class TemperatureService {
             .collect(Collectors.toMap(v -> new CaseInsensitiveString(v.country()), Function.identity()));
     }
 
-    @Cacheable("temperature")
-    public double getTemperature(String country) throws UnknownCountryException {
+    @Cacheable(value="temperatureCache", key="{ #root.methodName, #country, #date }")
+    public double getTemperature(String country, String date) throws UnknownCountryException {
         TemperatureGenerationData data = temperatureDatasByCountry.get(new CaseInsensitiveString(country));
         if (data == null) {
             throw new UnknownCountryException(country);
